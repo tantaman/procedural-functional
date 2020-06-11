@@ -106,3 +106,13 @@ function loadTileMap(directory: string): TileMap {
 function generateScreen(): Screen {
 
 }
+
+module.exports = {
+  mirror,
+  intersect,
+  getTilesFor,
+  getPartnersFor,
+  loadTileMap,
+  generateScreen,
+  generateTile,
+};

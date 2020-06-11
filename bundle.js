@@ -70,4 +70,14 @@ function loadTileMap(directory) {} // read the directory
 
 function generateScreen() {}
 
+module.exports = {
+  mirror: mirror,
+  intersect: intersect,
+  getTilesFor: getTilesFor,
+  getPartnersFor: getPartnersFor,
+  loadTileMap: loadTileMap,
+  generateScreen: generateScreen,
+  generateTile: generateTile
+};
+
 },{}]},{},[1]);
