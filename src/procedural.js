@@ -1,3 +1,5 @@
+// @flow
+
 const {intersect} = require('./stdLib');
 /*
 const tile = {
@@ -56,8 +58,6 @@ type TileMap = $ReadOnly<{
 // that represent moments in the past.
 
 function generateTile(neighborOne: [Side, Tile], neighborTwo: [Side, Tile]): Tile {
-  // 1. pick random tiles until one fits with left and bottom
-  // 2. intersect getTiles(getPartners(leftNeighbor->edges->right)) with getTiles(getPartners(bottomNeighbor->edges->top))
   return intersect(
     getTilesFor(
       getPartnersFor(
