@@ -1,0 +1,15 @@
+{
+  "name": "procedural-functional",
+  "scripts": {
+    "build": "browserify main.js -t babelify -o bundle.js",
+    "watch": "npm-watch"
+  },
+  "dependencies": {},
+  "watch": {
+    "build": "main.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "babelify": "^10.0.0"
+  }
+}
