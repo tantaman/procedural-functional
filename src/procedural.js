@@ -1,6 +1,6 @@
 // @flow
 
-const {intersect} = require('./stdLib');
+const {intersect, flatMap} = require('./stdLib');
 /*
 const tile = {
   edges: {
@@ -36,7 +36,7 @@ type Edge = $ReadOnly<{
 
 type TileMap = $ReadOnly<{
   [key: EdgeType]: $ReadOnly<{
-    [key: Side]: $ReadOnlyArray<Side>,
+    [key: Side]: $ReadOnlyArray<Tile>,
   }>,
 }>;
 
@@ -57,17 +57,19 @@ type TileMap = $ReadOnly<{
 // current state of the system at any snapshot in time? Not if the system includes a reasoning being that can look at the past? Well do we look at the past or just artifacts in the present
 // that represent moments in the past.
 
-function generateTile(neighborOne: [Side, Tile], neighborTwo: [Side, Tile]): Tile {
+function getPossibleTiles(tileMap: TileMap, neighborOne: [Side, Tile], neighborTwo: [Side, Tile]): $ReadOnlyArray<Tile> {
   return intersect(
-    getTilesFor(
+    flatMap(
       getPartnersFor(
         neighborOne[1].edges[mirror(neighborOne[0])],
       ),
+      (edge: Edge) => getTilesFor(tileMap, edge, neighborOne[0]),
     ),
-    getTilesFor(
+    flatMap(
       getPartnersFor(
         neighborTwo[1].edges[mirror(neighborTwo[0])],
       ),
+      (edge: Edge) => getTilesFor(tileMap, edge, neighborTwo[0]),
     ),
   );
 }
@@ -83,7 +85,7 @@ function mirror(side: Side): Side {
 
 function getTilesFor(tileMap: TileMap, edge: Edge, side: Side): $ReadOnlyArray<Tile> {
   // look up available tiles that have the given edge on the given side
-  return tileMap[edge][side];
+  return tileMap[edge.type][side];
 }
 
 function getPartnersFor(edge: Edge): $ReadOnlyArray<Edge> {
@@ -94,12 +96,13 @@ function getPartnersFor(edge: Edge): $ReadOnlyArray<Edge> {
 function loadTileMap(directory: string): TileMap {
   // read the directory
   // parse the tile file names which will encode the edges and sides
+  return {};
 }
 
 // Need the current state of the screen?
 // Need an orientation?
 // Start generating at a given corner?
-function generateScreen(): Screen {
+function generateScreen(): void {
 
 }
 
@@ -109,5 +112,5 @@ module.exports = {
   getPartnersFor,
   loadTileMap,
   generateScreen,
-  generateTile,
+  getPossibleTiles,
 };
