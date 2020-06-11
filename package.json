@@ -2,7 +2,8 @@
   "name": "procedural-functional",
   "scripts": {
     "build": "browserify main.js -t babelify -o bundle.js",
-    "watch": "npm-watch"
+    "watch": "npm-watch",
+    "test": "jest"
   },
   "dependencies": {},
   "watch": {
