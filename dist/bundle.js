@@ -1,6 +1,13 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
+var procedural = require('./procedural');
+
+},{"./procedural":2}],2:[function(require,module,exports){
+"use strict";
+
+var _require = require('./stdLib'),
+    intersect = _require.intersect;
 /*
 const tile = {
   edges: {
@@ -8,12 +15,8 @@ const tile = {
   },
 };
 */
-// Edge would need to be an interface because whether or not it connects with another edge is mosty
-// easily modeled and best organized as a method. If the connection logic was separate than how could we
-// pull new edge types into our system?
-// Hmm data edges with a function to `getPartner` may be better as we can have a set of rules for edges that govern pairing
-// and a registry of available edges... to see which ones meet that pairing.
-// Well registry of edge types...
+
+
 // We need new in memory storage that has a different concept of identity. Nominal identity -- same name over time but the concrete named changes -- with a link to its concrete instances over time.
 // Nominal identity vs Structural identity.
 // Nominal typing vs structural typing.
@@ -44,13 +47,6 @@ function mirror(side) {
   }[side];
 }
 
-function intersect(a, b) {
-  var left = new Set(a);
-  return b.filter(function (x) {
-    return left.contains(x);
-  });
-}
-
 function getTilesFor(tileMap, edge, side) {
   // look up available tiles that have the given edge on the given side
   return tileMap[edge][side];
@@ -78,6 +74,20 @@ module.exports = {
   loadTileMap: loadTileMap,
   generateScreen: generateScreen,
   generateTile: generateTile
+};
+
+},{"./stdLib":3}],3:[function(require,module,exports){
+"use strict";
+
+function intersect(a, b) {
+  var left = new Set(a);
+  return b.filter(function (x) {
+    return left.contains(x);
+  });
+}
+
+module.exports = {
+  intersect: intersect
 };
 
 },{}]},{},[1]);
