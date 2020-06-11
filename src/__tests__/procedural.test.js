@@ -1,5 +1,10 @@
-const main = require('../main');
+const {
+  mirror,
+  getTilesFor,
+  getPartnersFor,
+  loadTileMpa,
+  generateScreen,
+  generateTile,
+} = require('../procedural');
 
-test('some shit', () => {
-  console.log(main);
-});
+test('noop', () => {});

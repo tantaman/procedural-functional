@@ -105,7 +105,6 @@ function generateScreen(): Screen {
 
 module.exports = {
   mirror,
-  intersect,
   getTilesFor,
   getPartnersFor,
   loadTileMap,
