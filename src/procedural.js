@@ -1,6 +1,6 @@
 // @flow
 
-const {intersect, flatMap} = require('./stdLib');
+const { intersect, flatMap } = require("./stdLib");
 /*
 const tile = {
   edges: {
@@ -11,8 +11,13 @@ const tile = {
 
 type ImagePath = string;
 
-type Side = 'top' | 'left' | 'bottom' | 'right';
-type EdgeType = 'water' | 'underground' | 'sky' | 'land_surface' | 'water_surface';
+type Side = "top" | "left" | "bottom" | "right";
+type EdgeType =
+  | "water"
+  | "underground"
+  | "sky"
+  | "land_surface"
+  | "water_surface";
 
 type Tile = $ReadOnly<{
   edges: $ReadOnly<{
@@ -73,33 +78,37 @@ const tiles = {
 // current state of the system at any snapshot in time? Not if the system includes a reasoning being that can look at the past? Well do we look at the past or just artifacts in the present
 // that represent moments in the past.
 
-function getPossibleTiles(tileMap: TileMap, neighborOne: [Side, Tile], neighborTwo: [Side, Tile]): $ReadOnlyArray<Tile> {
+function getPossibleTiles(
+  tileMap: TileMap,
+  neighborOne: [Side, Tile],
+  neighborTwo: [Side, Tile]
+): $ReadOnlyArray<Tile> {
   return intersect(
     flatMap(
-      getPartnersFor(
-        neighborOne[1].edges[mirror(neighborOne[0])],
-      ),
-      (edge: Edge) => getTilesFor(tileMap, edge, neighborOne[0]),
+      getPartnersFor(neighborOne[1].edges[mirror(neighborOne[0])]),
+      (edge: Edge) => getTilesFor(tileMap, edge, neighborOne[0])
     ),
     flatMap(
-      getPartnersFor(
-        neighborTwo[1].edges[mirror(neighborTwo[0])],
-      ),
-      (edge: Edge) => getTilesFor(tileMap, edge, neighborTwo[0]),
-    ),
+      getPartnersFor(neighborTwo[1].edges[mirror(neighborTwo[0])]),
+      (edge: Edge) => getTilesFor(tileMap, edge, neighborTwo[0])
+    )
   );
 }
 
 function mirror(side: Side): Side {
-  return ({
-    left: 'right',
-    top: 'bottom',
-    right: 'left',
-    bottom: 'top',
-  })[side];
+  return {
+    left: "right",
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+  }[side];
 }
 
-function getTilesFor(tileMap: TileMap, edge: Edge, side: Side): $ReadOnlyArray<Tile> {
+function getTilesFor(
+  tileMap: TileMap,
+  edge: Edge,
+  side: Side
+): $ReadOnlyArray<Tile> {
   // look up available tiles that have the given edge on the given side
   return tileMap[edge.type][side];
 }
@@ -116,9 +125,7 @@ function createTileMap(): TileMap {
 // Need the current state of the screen?
 // Need an orientation?
 // Start generating at a given corner?
-function generateScreen(): void {
-
-}
+function generateScreen(): void {}
 
 module.exports = {
   mirror,

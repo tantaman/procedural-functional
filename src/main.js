@@ -1,3 +1,3 @@
 // @flow
 
-const procedural = require('./procedural');
+const procedural = require("./procedural");

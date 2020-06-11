@@ -3,7 +3,8 @@
   "scripts": {
     "build": "browserify src/main.js -t babelify -o dist/bundle.js",
     "watch": "npm-watch",
-    "test": "jest"
+    "test": "jest",
+    "pwatch": "./node_modules/onchange/dist/bin.js 'src/**/*.js' -- prettier --write {{changed}}"
   },
   "dependencies": {},
   "watch": {
@@ -15,6 +16,8 @@
     "@babel/preset-flow": "^7.10.1",
     "babelify": "^10.0.0",
     "flow-bin": "^0.126.1",
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "onchange": "^7.0.2",
+    "prettier": "2.0.5"
   }
 }

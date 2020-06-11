@@ -5,6 +5,6 @@ const {
   loadTileMpa,
   generateScreen,
   generateTile,
-} = require('../procedural');
+} = require("../procedural");
 
-test('noop', () => {});
+test("noop", () => {});
