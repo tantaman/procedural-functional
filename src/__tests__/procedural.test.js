@@ -7,4 +7,6 @@ const {
   generateTile,
 } = require("../procedural");
 
-test("noop", () => {});
+test("tile map creation", () => {
+
+});

@@ -1,0 +1,15 @@
+module.exports = {
+  fullWater: {},
+  waterIntoPlatform: {},
+  platformIntoWater: {},
+  subsurfaceIntoWater: {},
+  waterIntoSubsurface: {},
+  platformBaseAboveWater: {},
+  platformBaseInSky: {},
+  platformTopInSky: {},
+  subsurface: {},
+  skyIntoPlatform: {},
+  platformIntoSky: {},
+  sky: {},
+  platform: {},
+};

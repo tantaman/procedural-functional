@@ -45,22 +45,6 @@ type TileMap = $ReadOnly<{
   }>,
 }>;
 
-const tiles = {
-  fullWater: {},
-  waterIntoPlatform: {},
-  platformIntoWater: {},
-  subsurfaceIntoWater: {},
-  waterIntoSubsurface: {},
-  platformBaseAboveWater: {},
-  platformBaseInSky: {},
-  platformTopInSky: {},
-  subsurface: {},
-  skyIntoPlatform: {},
-  platformIntoSky: {},
-  sky: {},
-  platform: {},
-};
-
 // We need new in memory storage that has a different concept of identity. Nominal identity -- same name over time but the concrete named changes -- with a link to its concrete instances over time.
 // Nominal identity vs Structural identity.
 // Nominal typing vs structural typing.
@@ -118,7 +102,7 @@ function getPartnersFor(edge: Edge): $ReadOnlyArray<Edge> {
   return [edge];
 }
 
-function createTileMap(): TileMap {
+function createTileMap(tiles: {[key: string]: Tile}): TileMap {
   return {};
 }
 
